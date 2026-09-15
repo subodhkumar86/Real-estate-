@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo, useEffect } from "react";
+import { Suspense, useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { 
@@ -29,7 +29,7 @@ function getAdvisoryScore(property: Property) {
   return Math.min(100, roiScore + reraScore + featuredScore + detailScore);
 }
 
-export default function PropertiesPage() {
+function PropertiesPageContent() {
   const searchParams = useSearchParams();
   const initialCategory = searchParams?.get("category") || "All";
   const initialLocation = searchParams?.get("location") || "All";
@@ -601,5 +601,13 @@ export default function PropertiesPage() {
         defaultProperty={modalProperty}
       />
     </main>
+  );
+}
+
+export default function PropertiesPage() {
+  return (
+    <Suspense fallback={<main className="min-h-screen bg-[#060d09]" />}>
+      <PropertiesPageContent />
+    </Suspense>
   );
 }
