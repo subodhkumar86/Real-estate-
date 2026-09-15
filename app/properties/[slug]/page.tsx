@@ -531,12 +531,12 @@ export default function PropertyDetailPage() {
                 Calculated in real-time for {property.name} consideration of {property.price}.
               </p>
 
-              <div className="bg-[#0b1710] border border-white/10 p-6 sm:p-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div className="relative overflow-hidden border-y border-white/10 bg-[linear-gradient(120deg,rgba(255,255,255,0.025),transparent_55%)] py-7 sm:py-9 grid grid-cols-1 md:grid-cols-[1.15fr_.85fr] gap-10 items-center">
                 {/* Sliders */}
-                <div className="space-y-5">
+                <div className="space-y-7 px-1 sm:px-5">
                   <div>
-                    <div className="flex justify-between text-xs mb-1.5">
-                      <span className="text-gray-400">Loan Financing: {loanPercent}%</span>
+                    <div className="flex justify-between text-sm mb-3">
+                      <span className="text-gray-400">Loan financing · {loanPercent}%</span>
                       <strong className="text-white">₹{(emiCalculation.principal / 10000000).toFixed(2)} Cr</strong>
                     </div>
                     <input
@@ -551,8 +551,8 @@ export default function PropertyDetailPage() {
                   </div>
 
                   <div>
-                    <div className="flex justify-between text-xs mb-1.5">
-                      <span className="text-gray-400">Interest Rate: {interestRate}%</span>
+                    <div className="flex justify-between text-sm mb-3">
+                      <span className="text-gray-400">Interest rate · {interestRate}%</span>
                       <strong className="text-white">{interestRate}% p.a.</strong>
                     </div>
                     <input
@@ -567,8 +567,8 @@ export default function PropertyDetailPage() {
                   </div>
 
                   <div>
-                    <div className="flex justify-between text-xs mb-1.5">
-                      <span className="text-gray-400">Loan Tenure: {loanTenure} Years</span>
+                    <div className="flex justify-between text-sm mb-3">
+                      <span className="text-gray-400">Loan tenure · {loanTenure} years</span>
                       <strong className="text-white">{loanTenure} Years ({loanTenure * 12} Mos)</strong>
                     </div>
                     <input
@@ -584,11 +584,11 @@ export default function PropertyDetailPage() {
                 </div>
 
                 {/* Calculation Outputs */}
-                <div className="bg-[#102217] p-6 border border-[#c6a15b]/30 text-center">
+                <div className="relative mx-1 overflow-hidden border border-[#c6a15b]/25 bg-[radial-gradient(circle_at_50%_0%,rgba(198,161,91,0.13),transparent_52%),rgba(255,255,255,0.025)] p-7 text-center sm:mx-0 sm:p-9">
                   <span className="text-[10px] uppercase tracking-[0.2em] text-[#c6a15b] font-semibold block mb-1">
                     Estimated Monthly EMI
                   </span>
-                  <strong className="font-serif text-3xl sm:text-4xl text-white font-normal block my-2">
+                  <strong className="font-serif text-4xl sm:text-5xl text-white font-normal block my-3 tracking-tight">
                     ₹{emiCalculation.emi.toLocaleString('en-IN')}
                   </strong>
                   <span className="text-xs text-gray-400 block mb-4">per month</span>
@@ -632,10 +632,8 @@ export default function PropertyDetailPage() {
           </div>
 
           {/* Right Column: Sticky Luxury Advisory & Acquisition Desk */}
-          <div>
-            <div className="sticky top-24 bg-gradient-to-b from-[#0b1811] via-[#07110c] to-[#040805] border border-[#c6a15b]/40 p-6 sm:p-7 shadow-[0_20px_60px_rgba(0,0,0,0.85)] space-y-6 relative rounded-[4px]">
-              {/* Subtle top gold highlight line */}
-              <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#dfc17b] to-transparent" />
+          <aside className="lg:border-l lg:border-white/10 lg:pl-8">
+            <div className="sticky top-32 space-y-7 relative border-t border-[#c6a15b]/45 pt-7">
 
               <div>
                 <div className="flex items-center gap-2 mb-1.5">
@@ -644,10 +642,10 @@ export default function PropertyDetailPage() {
                     Private Advisory Desk
                   </span>
                 </div>
-                <h3 className="font-serif text-2xl sm:text-3xl text-white">
-                  Schedule Private Preview
+                <h3 className="font-serif text-3xl sm:text-4xl leading-[1.05] text-white">
+                  A private viewing,<br /><em className="text-[#dfc17b]">on your terms.</em>
                 </h3>
-                <p className="text-xs text-gray-300 mt-2 leading-relaxed font-light">
+                <p className="text-sm text-gray-400 mt-4 leading-6 font-light">
                   Direct developer allocation with verified UP RERA due diligence, private site escort, and tailored payment structuring.
                 </p>
               </div>
@@ -658,7 +656,7 @@ export default function PropertyDetailPage() {
                 <button
                   type="button"
                   onClick={() => setModalOpen(true)}
-                  className="w-full bg-gradient-to-r from-[#dfc17b] via-[#faebd7] to-[#c6a15b] hover:from-[#faebd7] hover:to-[#dfc17b] text-[#07100b] font-bold text-xs uppercase tracking-[0.16em] py-3.5 px-4 flex items-center justify-center gap-2.5 shadow-[0_6px_25px_rgba(198,161,91,0.35)] hover:shadow-[0_8px_30px_rgba(198,161,91,0.5)] hover:scale-[1.01] transition-all cursor-pointer rounded-[2px]"
+                  className="gold-btn-luxury w-full py-4 px-4 flex items-center justify-center gap-2.5 text-xs cursor-pointer"
                 >
                   <Calendar size={15} />
                   <span>Book Chauffeur Site Tour ↗</span>
@@ -668,7 +666,7 @@ export default function PropertyDetailPage() {
                 <button
                   type="button"
                   onClick={() => setDossierOpen(true)}
-                  className="w-full bg-[#050b07] hover:bg-[#0c1811] border border-[#c6a15b]/40 hover:border-[#dfc17b] text-[#dfc17b] hover:text-white py-3 text-xs uppercase tracking-wider font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer rounded-[2px]"
+                  className="w-full border border-white/15 hover:border-[#dfc17b]/70 bg-white/[.025] text-gray-200 hover:text-[#dfc17b] py-3.5 text-xs uppercase tracking-wider font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <FileText size={14} />
                   <span>Download Executive Dossier (PDF)</span>
@@ -678,7 +676,7 @@ export default function PropertyDetailPage() {
                 <button
                   type="button"
                   onClick={() => setWhatsappModalOpen(true)}
-                  className="w-full bg-[#06140c] hover:bg-[#0a2316] border border-[#25D366]/40 hover:border-[#25D366] text-white hover:text-emerald-300 py-3 text-xs uppercase tracking-wider font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer rounded-[2px]"
+                  className="w-full border border-white/15 hover:border-emerald-500/60 bg-white/[.025] text-gray-200 hover:text-emerald-300 py-3.5 text-xs uppercase tracking-wider font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <MessageSquare size={14} className="text-[#25D366]" />
                   <span>Receive Floorplans on WhatsApp ↗</span>
@@ -693,7 +691,7 @@ export default function PropertyDetailPage() {
               )}
 
               {/* Verified Trust Metrics */}
-              <div className="border-t border-white/10 pt-4 space-y-2.5 text-xs text-gray-300">
+              <div className="border-t border-white/10 pt-5 space-y-3 text-xs text-gray-300">
                 <div className="flex justify-between items-center">
                   <span className="text-gray-400">Advisory Representation:</span>
                   <strong className="text-white font-medium">Zero Brokerage to Buyers</strong>
@@ -710,7 +708,7 @@ export default function PropertyDetailPage() {
                 </div>
               </div>
             </div>
-          </div>
+          </aside>
         </div>
 
         {/* Similar Curated Properties */}
