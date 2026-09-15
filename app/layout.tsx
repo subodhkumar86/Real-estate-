@@ -3,7 +3,6 @@ import './globals.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import FloatingContact from '../components/FloatingContact';
-import MarketTicker from '../components/MarketTicker';
 import { CurrencyProvider } from '../context/CurrencyContext';
 
 export const metadata: Metadata = {
@@ -23,7 +22,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             Skip to content
           </a>
           <div className="fixed top-0 inset-x-0 z-50">
-            <MarketTicker />
             <Navbar />
           </div>
           <div id="main-content" className="min-h-screen pt-28">
