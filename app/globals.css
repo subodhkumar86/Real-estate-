@@ -526,3 +526,31 @@ input[type="range"]::-moz-range-thumb {
 .gold-badge-glow {
   box-shadow: 0 0 20px rgba(198, 161, 91, 0.35), inset 0 0 10px rgba(198, 161, 91, 0.2);
 }
+
+/* Responsive finishing layer: keeps every surface usable from wide desktop to small phones. */
+html, body { max-width: 100%; overflow-x: hidden; }
+img, video, svg { max-width: 100%; }
+table { max-width: 100%; }
+@media (max-width: 1024px) {
+  .hero-title { font-size: clamp(3.5rem, 8vw, 6.5rem) !important; }
+  .hero-copy { max-width: 34rem; }
+  .navbar-inner { gap: .75rem; }
+}
+@media (max-width: 768px) {
+  .hero-title { font-size: clamp(3rem, 12vw, 5rem) !important; line-height: .92 !important; }
+  .section-title { font-size: clamp(2.35rem, 9vw, 4rem) !important; }
+  .property-grid, .project-grid, .location-grid, .testimonial-grid { grid-template-columns: 1fr !important; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .comparison-table { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .comparison-table table { min-width: 680px; }
+  .modal-panel { width: calc(100vw - 1.5rem) !important; max-height: calc(100svh - 1.5rem) !important; overflow-y: auto; }
+  .floating-contact { right: .75rem !important; bottom: .75rem !important; }
+  .footer-grid { grid-template-columns: 1fr 1fr !important; }
+}
+@media (max-width: 480px) {
+  .hero-title { font-size: clamp(2.75rem, 13vw, 4.2rem) !important; }
+  .stats-grid { gap: .5rem !important; }
+  .footer-grid { grid-template-columns: 1fr !important; }
+  .gold-btn-luxury, .outline-btn-luxury { width: 100%; justify-content: center; }
+  .property-card, .luxury-card { border-radius: 2px; }
+}

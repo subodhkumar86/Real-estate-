@@ -84,9 +84,10 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   const primaryLinks = [
-    { name: 'Portfolio', href: '/properties' },
+    { name: 'Properties', href: '/properties' },
     { name: 'Projects', href: '/projects' },
-    { name: 'Corridors', href: '/locations' },
+    { name: 'Locations', href: '/locations' },
+    { name: 'Insights', href: '/insights' },
   ];
 
   const advisoryItems = [
@@ -192,7 +193,7 @@ export default function Navbar() {
                     : 'text-gray-300 hover:text-white'
                 }`}
               >
-                <span>Advisory</span>
+                <span>Tools</span>
                 <ChevronDown 
                   size={13} 
                   className={`transition-transform duration-300 text-[#c6a15b] ${advisoryOpen ? 'rotate-180' : ''}`} 
@@ -204,7 +205,7 @@ export default function Navbar() {
                 <div className="absolute top-full -left-6 pt-3 w-80 z-50 animate-fadeIn">
                   <div className="bg-[#07100b]/95 backdrop-blur-2xl border border-[#c6a15b]/40 p-3 shadow-[0_20px_50px_rgba(0,0,0,0.9)]">
                     <div className="text-[9px] uppercase tracking-[0.2em] text-[#c6a15b] font-cinzel font-semibold px-3 py-1.5 border-b border-white/10 mb-1 flex items-center justify-between">
-                      <span>Executive Intelligence</span>
+                      <span>Investment Tools</span>
                       <Sparkles size={10} />
                     </div>
 

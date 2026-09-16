@@ -86,9 +86,13 @@ export default function PropertyDetailPage() {
         // eslint-disable-next-line react-hooks/set-state-in-effect
         setCurrentProperty(found);
         setActiveImage(found.image);
+      } else {
+        router.replace('/properties');
       }
-    } catch {}
-  }, [slug]);
+    } catch {
+      router.replace('/properties');
+    }
+  }, [router, slug]);
 
   // Dynamic EMI calculation state based on property price
   const [loanPercent, setLoanPercent] = useState(80);

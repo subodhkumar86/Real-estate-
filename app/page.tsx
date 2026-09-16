@@ -1016,14 +1016,17 @@ export default function Home() {
               <h3 className="font-serif text-2xl text-white">Noida Ultra-Luxury Architectural Portfolio</h3>
             </div>
             <div className="relative aspect-video w-full bg-black overflow-hidden border border-white/20">
-              <img
-                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=90"
-                alt="Video Preview"
-                loading="lazy"
-                decoding="async"
+              <video
                 className="w-full h-full object-cover opacity-80"
-              />
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 text-center p-6">
+                controls
+                playsInline
+                preload="metadata"
+                poster="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=90"
+              >
+                <source src="https://cdn.coverr.co/videos/coverr-a-modern-house-1575/1080p.mp4" type="video/mp4" />
+                Your browser does not support embedded video.
+              </video>
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 text-center p-6 pointer-events-none">
                 <div className="w-16 h-16 rounded-full bg-[#c6a15b] flex items-center justify-center text-[#040805] shadow-[0_0_30px_rgba(198,161,91,0.6)] mb-3 cursor-pointer hover:scale-110 transition-transform">
                   <Play size={24} className="fill-[#040805] ml-1" />
                 </div>
@@ -1036,7 +1039,7 @@ export default function Home() {
                     setVideoModalOpen(false);
                     setModalOpen(true);
                   }}
-                  className="mt-4 gold-btn-luxury px-6 py-2.5 text-xs cursor-pointer"
+                  className="mt-4 gold-btn-luxury px-6 py-2.5 text-xs cursor-pointer pointer-events-auto"
                 >
                   Book Private Screening Room ↗
                 </button>

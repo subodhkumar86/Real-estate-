@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { X, CheckCircle2, Phone, Mail, User, Sparkles, Clock, ShieldCheck } from "lucide-react";
 import PremiumSelect from "./PremiumSelect";
 
@@ -23,12 +23,27 @@ export default function ConsultationModal({ isOpen, onClose, defaultProperty = "
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (isOpen) {
+      // The modal is an external UI surface; reset its transient state on open.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setSubmitted(false);
+      setError("");
+      setFormData((current) => ({
+        ...current,
+        propertyInterest: defaultProperty || "All Ultra-Luxury Properties",
+      }));
+    }
+  }, [isOpen, defaultProperty]);
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError("");
 
     try {
       const existingLeads = JSON.parse(localStorage.getItem('investinpro_leads') || '[]');
@@ -47,14 +62,23 @@ export default function ConsultationModal({ isOpen, onClose, defaultProperty = "
       };
       localStorage.setItem('investinpro_leads', JSON.stringify([newLead, ...existingLeads]));
       window.dispatchEvent(new Event('leads-updated'));
-    } catch {
-      // fallback
-    }
-
-    setTimeout(() => {
+      const response = await fetch('/api/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          interest: formData.propertyInterest,
+          source: 'VIP Consultation',
+        }),
+      });
+      const result = await response.json().catch(() => ({})) as { ok?: boolean; message?: string };
+      if (!response.ok || !result.ok) throw new Error(result.message || 'Please try again.');
       setLoading(false);
       setSubmitted(true);
-    }, 500);
+    } catch (submissionError) {
+      setLoading(false);
+      setError(submissionError instanceof Error ? submissionError.message : 'Please try again.');
+    }
   };
 
   return (
@@ -226,6 +250,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultProperty = "
                   {loading ? "Confirming..." : "Confirm Private Appointment ↗"}
                 </button>
               </div>
+              {error && <p role="alert" className="text-xs text-red-300">{error}</p>}
             </form>
           </div>
         ) : (
